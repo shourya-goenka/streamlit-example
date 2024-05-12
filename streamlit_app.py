@@ -47,8 +47,7 @@ if button_clicked:
             def download_csv():
                 csv = df.to_csv(index=False,header=True)
                 b64 = base64.b64encode(csv.encode()).decode()
-                href = f"data:file/csv;base64,{b64}"
-                return href
+                return b64
             button_label = "Download Output CSV"
             button_id = "download_csv_button"
             st.download_button(
