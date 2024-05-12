@@ -30,6 +30,9 @@ amt = st.text_input("Enter transaction amount")
 
 st.write("OR")
 
+df = pd.read_csv("sample.csv")
+st.write("CSV Format:", df)
+
 uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
