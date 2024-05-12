@@ -49,7 +49,7 @@ if button_clicked:
                 b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
-                st.markdown(download_csv(), unsafe_allow_html=True)
+            st.markdown(download_csv(), unsafe_allow_html=True)
     else:
         with st.spinner("Checking transaction(s)..."):
             st.success("Checked transaction!")
