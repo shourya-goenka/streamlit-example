@@ -20,10 +20,10 @@ def validate_time_format(input_time):
         return False
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
-tran_time = st.text_input("Enter transaction time in hh:mm:ss format", "")
+tran_time = st.text_input("Enter transaction time in (hh:mm:ss) format", "long " * 30 + "text")
 # Validate time and display error message if format is incorrect
 if not validate_time_format(tran_time):
-    st.error("Please enter time in the format hh:mm:ss")
+    st.error("Please enter time in the format (hh:mm:ss)",""long " * 30 + "text"")
 # Display the entered time if format is correct
 else:
     st.write("You entered:", tran_time)
