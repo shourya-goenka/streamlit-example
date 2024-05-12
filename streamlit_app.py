@@ -46,6 +46,6 @@ days = st.text_input("Enter days since last transaction")
 button_clicked = st.button("Check transaction")
 if button_clicked:
     with st.spinner("Checking transaction..."):
-    time.sleep(3)
-    st.success("Checked transaction!")
+        time.sleep(3)
+        st.success("Checked transaction!")
     st.write("Congratulations! Not a fraudulent transaction.")
