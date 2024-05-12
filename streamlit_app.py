@@ -35,9 +35,9 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     st.write("Uploaded CSV:", df)
 
-button_clicked = st.button("Check transaction")
+button_clicked = st.button("Check transaction(s)")
 if button_clicked:
-    with st.spinner("Checking transaction..."):
+    with st.spinner("Checking transaction(s)..."):
         time.sleep(5)
-        st.success("Checked transaction!")
+        st.success("Checked transaction(s)!")
     st.write("Congratulations! Not a fraudulent transaction.")
