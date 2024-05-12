@@ -47,16 +47,11 @@ if button_clicked:
             def download_csv():
                 csv = df.to_csv(index=False,header=True)
                 b64 = base64.b64encode(csv.encode()).decode()
-                return b64
+                href = f'data:file/csv;base64,{b64}'
+                return href
             button_label = "Download Output CSV"
             button_id = "download_csv_button"
-            st.download_button(
-                label=button_label,
-                data=download_csv(),
-                file_name="output.csv",
-                mime="text/csv",
-                key=button_id
-            )
+            st.markdown(f'<a href="{download_csv(df)}" download="output.csv">{button_label}</a>', unsafe_allow_html=True)
     else:
         with st.spinner("Checking transaction(s)..."):
             st.success("Checked transaction!")
