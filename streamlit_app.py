@@ -10,7 +10,7 @@ import time
 """
 # Welcome to your own UPI Transaction Fraud Detector!
 
-You have the option of inspecting a single transaction by adjusting the parameters below or you can even check 
+You have the option of inspecting a single transaction by adjusting the parameters below OR you can even check 
 multiple transactions at once by uploading a .csv file in the specified format
 """
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
@@ -27,6 +27,13 @@ tran_city=st.selectbox("Select transaction city",['Agartala', 'Agra', 'Ahmedabad
 merch_cat = st.selectbox("Select merchant category", ['Brand Vouchers and OTT', 'Donations and Devotion', 'Financial services and Taxes', 'Home delivery', 'Investment', 'More Services', 'Other', 'Purchases', 'Travel bookings', 'Utilities'])
 
 amt = st.text_input("Enter transaction amount")
+
+st.write("OR")
+
+uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.write("Uploaded CSV:", df)
 
 button_clicked = st.button("Check transaction")
 if button_clicked:
