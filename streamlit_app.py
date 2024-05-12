@@ -45,14 +45,13 @@ if button_clicked:
             st.success("Checked transactions!")
             #add fraud column to df, predict and store model outputs in it
             def download_csv():
-                csv = df.to_csv()
-                b64 = base64.b64encode(csv.encode()).decode()  # Encodes the CSV file as a base64 string
+                csv = df.to_csv(index=False,header=True)
+                b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
             st.markdown(download_csv(), unsafe_allow_html=True)
     else:
         with st.spinner("Checking transaction(s)..."):
-            time.sleep(5)
             st.success("Checked transaction!")
             #predict and store model output in result, 0 for not fraud, 1 for fraud
             result = 0
