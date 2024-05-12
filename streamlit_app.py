@@ -45,7 +45,7 @@ if button_clicked:
             st.success("Checked transactions!")
             #add fraud column to df, predict and store model outputs in it
             def download_csv():
-                csv = df.to_csv(index=False)
+                csv = df.to_csv()
                 b64 = base64.b64encode(csv.encode()).decode()  # Encodes the CSV file as a base64 string
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
