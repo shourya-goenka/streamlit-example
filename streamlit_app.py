@@ -24,7 +24,7 @@ tran_time = st.text_input("Enter transaction time", "in (HH:MM:SS) format")
 if (tran_time!="in (HH:MM:SS) format"):
     # Validate time and display error message if format is incorrect
     if not validate_time_format(tran_time):
-    st.error("format error")
+        st.error("format error")
     # Display the entered time if format is correct
     else:
         st.write("You entered:", tran_time)
