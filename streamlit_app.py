@@ -12,7 +12,7 @@ multiple transactions at once by uploading a .csv file in the specified format
 """
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
-tran_time = st.time_input("Select the time of your transaction", datetime.time(12, 0, 0), use_seconds=True)
+tran_time = st.time_input("Select the time of your transaction", datetime.time(12, 0, 0))
 merch_id = st.text_input("Enter the merchant's id:")
 cust_id = st.text_input("Enter the customer's id:")
 device_id = st.text_input("Enter the device's id:")
