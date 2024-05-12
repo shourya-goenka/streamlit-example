@@ -2,7 +2,8 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-from datetime import datetime
+import datetime
+from datetime import datetime as dt
 import re
 import time
 
@@ -14,7 +15,7 @@ multiple transactions at once by uploading a .csv file in the specified format
 """
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
 if tran_date:
-    selected_date = datetime.strptime(str(tran_date), '%Y-%m-%d')
+    selected_date = dt.strptime(str(tran_date), '%Y-%m-%d')
     month = selected_date.strftime("%B")
     year = selected_date.year
 
