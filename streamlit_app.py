@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import datetime
+import re
 
 """
 # Welcome to your own UPI Transaction Fraud Detector!
@@ -10,9 +11,22 @@ import datetime
 You have the option of inspecting a single transaction by adjusting the parameters below or you can even check 
 multiple transactions at once by uploading a .csv file in the specified format
 """
+# Function to validate time format
+def validate_time_format(input_time):
+    pattern = re.compile(r'^([0-1]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$')
+    if pattern.match(input_time):
+        return True
+    else:
+        return False
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
-tran_time = st.time_input("Select the time of your transaction", datetime.time(12, 0, 0))
+tran_time = st.text_input("Enter transaction time (HH:MM:SS)", "")
+# Validate time and display error message if format is incorrect
+if not validate_time_format(tran_time):
+    st.error("Please enter time in the format HH:MM:SS")
+# Display the entered time if format is correct
+else:
+    st.write("You entered:", tran_time)
 merch_id = st.text_input("Enter the merchant's id:")
 cust_id = st.text_input("Enter the customer's id:")
 device_id = st.text_input("Enter the device's id:")
