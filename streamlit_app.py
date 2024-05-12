@@ -4,8 +4,8 @@ import pandas as pd
 import streamlit as st
 import datetime
 from datetime import datetime as dt
-import re
 import time
+import base64
 
 """
 # Welcome to your own UPI Transaction Fraud Detector!
