@@ -4,18 +4,22 @@ import pandas as pd
 import streamlit as st
 
 """
-# Welcome to Streamlit!
+# Welcome to your own UPI Transaction Fraud Detector!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
+You have the option of inspecting a single transaction by adjusting the parameters below or you can even check 
+multiple transactions at once by uploading a .csv file in the specified format
 """
 
+tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
+tran_time = st.time_input("Select the time of your transaction", datetime.time(hour=12, minute=0, second=0), use_seconds=True)
+merch_id = st.text_input("Enter the merchant's id:")
+cust_id = st.text_input("Enter the customer's id:")
+device_id = st.text_input("Enter the device's id:")
+trans_type = st.selectbox("Select an option", ["Bank Transfer", "Bill Payment", "Investment", "Other", "Purchase", "Refund", "Subscription"])
+pay_type = st.selectbox("Select an option", ["CRED", "Google Pay", "HDFC", "ICICI UPI", "IDFC UPI", "Other", "Paytm", "PhonePe", "Razor Pay"])
 num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
-
+merch_id = st.text_input("Enter the merchant's id:")
 indices = np.linspace(0, 1, num_points)
 theta = 2 * np.pi * num_turns * indices
 radius = indices
