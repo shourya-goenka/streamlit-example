@@ -43,3 +43,6 @@ tran_channel = st.selectbox("Select transaction channel", ["In-store", "Mobile",
 tran_amt_dev = st.text_input("Enter transaction amount deviation")
 amt = st.text_input("Enter transaction amount")
 days = st.text_input("Enter days since last transaction")
+button_clicked = st.button("Check transaction")
+if button_clicked:
+    st.write("Checking transaction...")
