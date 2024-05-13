@@ -48,15 +48,6 @@ st.markdown(
         left: 413px;
     }
     </style>
-    <script>
-    // Function to scroll to the bottom of the page
-    function scrollToBottom() {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-    
-    // Call the function when the button is clicked
-    scrollToBottom();
-    </script>
     """,
     unsafe_allow_html=True
 )
