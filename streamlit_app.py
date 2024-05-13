@@ -45,7 +45,7 @@ st.markdown(
     .stButton>button {
         position: fixed;
         bottom: 40px;
-        left: 415px;
+        left: 413px;
     }
     </style>
     """,
