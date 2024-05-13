@@ -51,7 +51,7 @@ st.markdown(
     <script>
     // Function to scroll to the bottom of the page
     function scrollToBottom() {
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
     
     // Call the function when the button is clicked
