@@ -100,6 +100,7 @@ if button_clicked:
                 input = input+tt_oh+pg_oh+ts_oh+mc_oh
                 prediction = loaded_model.predict([input])[0]
                 results.append(prediction)
+                st.write(results)
             df['fraud']=results
             st.success("Checked transactions!")
             st.markdown(download_csv(), unsafe_allow_html=True)
