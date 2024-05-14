@@ -103,8 +103,8 @@ if button_clicked:
         with st.spinner("Checking transaction(s)..."):
             tt_oh[tt.index(tran_type)]=1
             pg_oh[pg.index(pmt_gateway)]=1
-            tc_oh[tc.index(tran_state)]=1
-            ts_oh[ts.index(tran_city)]=1
+            tc_oh[tc.index(tran_city)]=1
+            ts_oh[ts.index(tran_state)]=1
             mc_oh[mc.index(merch_cat)]=1
             input = []
             input.append(int(amt))
