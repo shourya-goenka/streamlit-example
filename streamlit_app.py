@@ -90,7 +90,6 @@ if button_clicked:
             results = []
             for index, row in df.iterrows():
                 input = []
-                st.write(row.values)
                 input.append(row.values[0])
                 input.append(row.values[1])
                 input.append(row.values[2])
