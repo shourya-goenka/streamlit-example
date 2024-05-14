@@ -21,8 +21,7 @@ multiple transactions at once by uploading a .csv file in the specified format
 pickle_file_path = "UPI Fraud Detection updated.pkl"
 
 # Load the saved XGBoost model from the pickle file
-with open(pickle_file_path, 'rb') as file:
-    loaded_model = pickle.load(file)
+loaded_model = pickle.load(open(pickle_file_path, 'rb'))
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
 if tran_date:
