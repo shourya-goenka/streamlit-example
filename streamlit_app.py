@@ -40,7 +40,7 @@ tran_state=st.selectbox("Select transaction state",ts)
 tran_city=st.selectbox("Select transaction city",tc)
 merch_cat = st.selectbox("Select merchant category", mc)
 
-amt = st.text_input("Enter transaction amount")
+amt = st.number_input("Enter transaction amount",step=0.1)
 
 st.write("OR")
 
@@ -107,7 +107,7 @@ if button_clicked:
             ts_oh[ts.index(tran_state)]=1
             mc_oh[mc.index(merch_cat)]=1
             input = []
-            input.append(int(amt))
+            input.append(amt)
             input.append(year)
             input.append(month)
             input = input+tt_oh+pg_oh+tc_oh+ts_oh+mc_oh
