@@ -34,7 +34,7 @@ if tran_date:
     month = selected_date.strftime("%B")
     year = selected_date.year
 
-trans_type = st.selectbox("Select transaction type", tt)
+tran_type = st.selectbox("Select transaction type", tt)
 pmt_gateway = st.selectbox("Select payment gateway", pg)
 tran_state=st.selectbox("Select transaction state",ts)
 tran_city=st.selectbox("Select transaction city",tc)
@@ -101,9 +101,19 @@ if button_clicked:
             
     else:
         with st.spinner("Checking transaction(s)..."):
+            tt_oh[tt.index(tran_type)]=1
+            pg_oh[pg.index(pmt_gateway)]=1
+            tc_oh[tc.index(tran_state)]=1
+            ts_oh[ts.index(tran_city)]=1
+            mc_oh[mc.index(merch_cat)]=1
+            input = []
+            input.append(int(amt))
+            input.append(int(year))
+            input.append(int(month))
+            input = input+tt_oh+pg_oh+tc_oh+ts_oh+mc_oh
+            inputs = [input]
+            result = loaded_model.predict(inputs)[0]
             st.success("Checked transaction!")
-            inputs = [month,year,str(trans_type),str(pmt_gateway),str(tran_state),str(tran_city),str(merch_cat),amt]
-            result = loaded_model.predict_proba(inputs)
             if(result==0):
                 st.write("Congratulations! Not a fraudulent transaction.")
             else:
