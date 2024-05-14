@@ -116,7 +116,6 @@ if button_clicked:
             input.append(month)
             input = input+tt_oh+pg_oh+ts_oh+mc_oh
             inputs = [input]
-            st.write(inputs)
             result = loaded_model.predict(inputs)[0]
             st.success("Checked transaction!")
             if(result==0):
