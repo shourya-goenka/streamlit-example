@@ -88,7 +88,7 @@ if button_clicked:
                 b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
-            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[2, 3]]
+            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
             df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
             df.drop(columns=['Date'], inplace=True)
             results = []
