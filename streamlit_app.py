@@ -88,13 +88,23 @@ if button_clicked:
                 b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
-            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
+            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[2, 3]]
             df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
             df.drop(columns=['Date'], inplace=True)
             results = []
             for index, row in df.iterrows():
-                prob_predictions = loaded_model.predict_proba(row.values)
-                results.append(prob_predictions)
+                input = []
+                input.append(row.values[0])
+                input.append(row.values[1])
+                input.append(row.values[2])
+                tt_oh[tt.index(row.values[3]]=1
+                pg_oh[pg.index(row.values[4])]=1
+                tc_oh[tc.index(row.values[5])]=1
+                ts_oh[ts.index(row.values[6])]=1
+                mc_oh[mc.index(row.values[7])]=1
+                input = input+tt_oh+pg_oh+tc_oh+ts_oh+mc_oh
+                prediction = loaded_model.predict([input])[0]
+                results.append(prediction)
             df['fraud']=results
             st.success("Checked transactions!")
             st.markdown(download_csv(), unsafe_allow_html=True)
