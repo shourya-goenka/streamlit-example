@@ -9,7 +9,7 @@ import base64
 import pickle 
 # import subprocess
 # subprocess.check_call(["pip", "install", "xgboost"])
-import xgboost as xgb
+from xgboost import XGBClassifier
 
 """
 # Welcome to your own UPI Transaction Fraud Detector!
@@ -19,9 +19,8 @@ multiple transactions at once by uploading a .csv file in the specified format
 """
 
 pickle_file_path = "UPI Fraud Detection updated.pkl"
-loaded_model = xgb.XGBClassifier()
 # Load the saved XGBoost model from the pickle file
-model.load_model(pickle_file_path)
+loaded_model = pickle.load(open(pickle_file_path, 'rb'))
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
 if tran_date:
