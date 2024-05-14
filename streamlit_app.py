@@ -6,6 +6,8 @@ import datetime
 from datetime import datetime as dt
 import time
 import base64
+import pickle
+from xgboost import XGBClassifier
 
 """
 # Welcome to your own UPI Transaction Fraud Detector!
@@ -13,6 +15,13 @@ import base64
 You have the option of inspecting a single transaction by adjusting the parameters below OR you can even check 
 multiple transactions at once by uploading a .csv file in the specified format
 """
+
+pickle_file_path = "UPI Fraud Detection updated.pkl"
+
+# Load the saved XGBoost model from the pickle file
+with open(pickle_file_path, 'rb') as file:
+    loaded_model = pickle.load(file)
+
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
 if tran_date:
     selected_date = dt.strptime(str(tran_date), '%Y-%m-%d')
@@ -54,19 +63,27 @@ st.markdown(
 if button_clicked:
     if uploaded_file is not None:
         with st.spinner("Checking transactions..."):
-            st.success("Checked transactions!")
-            #add fraud column to df, predict and store model outputs in it
             def download_csv():
                 csv = df.to_csv(index=False,header=True)
                 b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
+            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
+            df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
+            df.drop(columns=['Date'], inplace=True)
+            results = []
+            for index, row in df.iterrows():
+                prob_predictions = loaded_model.predict_proba(row.values)
+                results.append(prob_predictions)
+            df['fraud']=results
+            st.success("Checked transactions!")
             st.markdown(download_csv(), unsafe_allow_html=True)
+            
     else:
         with st.spinner("Checking transaction(s)..."):
             st.success("Checked transaction!")
-            #predict and store model output in result, 0 for not fraud, 1 for fraud
-            result = 0
+            inputs = [month,year,str(trans_type),str(pmt_gateway),str(tran_state),str(tran_city),str(merch_cat),amt]
+            result = loaded_model.predict_proba(inputs)
             if(result==0):
                 st.write("Congratulations! Not a fraudulent transaction.")
             else:
