@@ -93,7 +93,6 @@ if button_clicked:
                 input.append(row.values[0])
                 input.append(row.values[1])
                 input.append(row.values[2])
-                st.write(row.values[3])
                 tt_oh[tt.index(row.values[3])]=1
                 pg_oh[pg.index(row.values[4])]=1
                 ts_oh[ts.index(row.values[5])]=1
