@@ -30,9 +30,8 @@ mc = ['Donations and Devotion', 'Financial services and Taxes', 'Home delivery',
 
 tran_date = st.date_input("Select the date of your transaction", datetime.date.today())
 if tran_date:
-    selected_date = dt.strptime(str(tran_date), '%Y-%m-%d')
-    month = selected_date.strftime("%B")
-    st.write(month)
+    selected_date = dt.combine(tran_date, dt.min.time())
+    month = selected_date.month
     year = selected_date.year
 
 tran_type = st.selectbox("Select transaction type", tt)
@@ -109,8 +108,8 @@ if button_clicked:
             mc_oh[mc.index(merch_cat)]=1
             input = []
             input.append(int(amt))
-            input.append(int(year))
-            input.append(int(month))
+            input.append(year)
+            input.append(month)
             input = input+tt_oh+pg_oh+tc_oh+ts_oh+mc_oh
             inputs = [input]
             result = loaded_model.predict(inputs)[0]
