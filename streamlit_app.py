@@ -97,7 +97,7 @@ if button_clicked:
                 input.append(row.values[0])
                 input.append(row.values[1])
                 input.append(row.values[2])
-                tt_oh[tt.index(row.values[3]]=1
+                tt_oh[tt.index(row.values[3])]=1
                 pg_oh[pg.index(row.values[4])]=1
                 tc_oh[tc.index(row.values[5])]=1
                 ts_oh[ts.index(row.values[6])]=1
