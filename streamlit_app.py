@@ -91,7 +91,7 @@ if button_clicked:
             df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
             df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
             df.drop(columns=['Date'], inplace=True)
-            df_reordered = df.reindex(columns=['Amount', 'Year', 'Month','Transaction_Type','Payment_Gateway','Transaction_City','Transaction_State','Merchant_Category'])
+            df = df.reindex(columns=['Amount', 'Year', 'Month','Transaction_Type','Payment_Gateway','Transaction_City','Transaction_State','Merchant_Category'])
             results = []
             for index, row in df.iterrows():
                 input = []
