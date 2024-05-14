@@ -3,7 +3,6 @@ numpy
 pandas
 streamlit
 datetime
-time
 base64
 pickle
 xgboost
