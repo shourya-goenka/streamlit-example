@@ -32,6 +32,7 @@ tran_date = st.date_input("Select the date of your transaction", datetime.date.t
 if tran_date:
     selected_date = dt.strptime(str(tran_date), '%Y-%m-%d')
     month = selected_date.strftime("%B")
+    st.write(month)
     year = selected_date.year
 
 tran_type = st.selectbox("Select transaction type", tt)
