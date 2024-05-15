@@ -121,8 +121,7 @@ if button_clicked:
             input = input+tt_oh+pg_oh+ts_oh+mc_oh
             inputs = [input]
             result = loaded_model.predict(inputs)[0]
-            st.success("Checked transaction!")
             if(result==0):
-                st.write("Congratulations! Not a fraudulent transaction.")
+                st.success("Congratulations! Not a fraudulent transaction.")
             else:
                 st.failure("Oh no! This transaction is fraudulent.")
