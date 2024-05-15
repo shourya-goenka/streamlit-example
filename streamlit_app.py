@@ -84,27 +84,30 @@ if button_clicked:
                 b64 = base64.b64encode(csv.encode()).decode()
                 href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download Output CSV</a>'
                 return href
-            df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
-            df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
-            df.drop(columns=['Date'], inplace=True)
-            df = df.reindex(columns=['Amount', 'Year', 'Month','Transaction_Type','Payment_Gateway','Transaction_State','Merchant_Category'])
-            results = []
-            for index, row in df.iterrows():
-                input = []
-                input.append(row.values[0])
-                input.append(row.values[1])
-                input.append(row.values[2])
-                tt_oh[tt.index(row.values[3])]=1
-                pg_oh[pg.index(row.values[4])]=1
-                ts_oh[ts.index(row.values[5])]=1
-                mc_oh[mc.index(row.values[6])]=1
-                input = input+tt_oh+pg_oh+ts_oh+mc_oh
-                prediction = loaded_model.predict([input])[0]
-                results.append(prediction)
-            df['fraud']=results
-            st.success("Checked transactions!")
-            st.markdown(download_csv(), unsafe_allow_html=True)
-            
+            try:
+                df[['Month', 'Year']] = df['Date'].str.split('-', expand=True)[[1, 2]]
+                df[['Month', 'Year']] = df[['Month', 'Year']].astype(int)
+                df.drop(columns=['Date'], inplace=True)
+                df = df.reindex(columns=['Amount', 'Year', 'Month','Transaction_Type','Payment_Gateway','Transaction_State','Merchant_Category'])
+                results = []
+                for index, row in df.iterrows():
+                    input = []
+                    input.append(row.values[0])
+                    input.append(row.values[1])
+                    input.append(row.values[2])
+                    tt_oh[tt.index(row.values[3])]=1
+                    pg_oh[pg.index(row.values[4])]=1
+                    ts_oh[ts.index(row.values[5])]=1
+                    mc_oh[mc.index(row.values[6])]=1
+                    input = input+tt_oh+pg_oh+ts_oh+mc_oh
+                    prediction = loaded_model.predict([input])[0]
+                    results.append(prediction)
+                df['fraud']=results
+                st.success("Checked transactions!")
+                st.markdown(download_csv(), unsafe_allow_html=True)
+            except Exception as e:
+                st.failure("Check CSV Format!")
+                
     else:
         with st.spinner("Checking transaction(s)..."):
             tt_oh[tt.index(tran_type)]=1
@@ -122,4 +125,4 @@ if button_clicked:
             if(result==0):
                 st.write("Congratulations! Not a fraudulent transaction.")
             else:
-                st.write("Oh no! This transaction is fraudulent.")
+                st.failure("Oh no! This transaction is fraudulent.")
