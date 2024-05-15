@@ -10,6 +10,8 @@ import pickle
 # import subprocess
 # subprocess.check_call(["pip", "install", "xgboost"])
 from xgboost import XGBClassifier
+from fastapi import FastAPI
+app = FastAPI()
 
 """
 # Welcome to your own UPI Transaction Fraud Detector!
