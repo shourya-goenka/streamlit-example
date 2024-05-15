@@ -38,7 +38,7 @@ pmt_gateway = st.selectbox("Select payment gateway", pg)
 tran_state=st.selectbox("Select transaction state",ts)
 merch_cat = st.selectbox("Select merchant category", mc)
 
-amt = st.number_input("Enter transaction amount",step=0.1)
+amt = st.number_input("Enter transaction amount",step=0.1,min_value=0.0, max_value=500000)
 st.write("Upto 5,00,000 only (UPI Transaction Limit)")
 
 st.write("OR")
