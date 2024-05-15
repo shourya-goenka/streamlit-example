@@ -10,12 +10,7 @@ import pickle
 # import subprocess
 # subprocess.check_call(["pip", "install", "xgboost"])
 from xgboost import XGBClassifier
-from fastapi import FastAPI
-app = FastAPI()    
-@app.post("/")
-def upload(files: List[UploadFile] = File(...)):
-    input = pd.read_csv(uploaded_file)
-    st.write("Uploaded CSV:", input)
+
 """
 # Welcome to your own UPI Transaction Fraud Detector!
 
