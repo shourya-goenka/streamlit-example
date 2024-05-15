@@ -106,7 +106,7 @@ if button_clicked:
                 st.success("Checked transactions!")
                 st.markdown(download_csv(), unsafe_allow_html=True)
             except Exception as e:
-                st.failure("Check CSV Format!")
+                st.error("Check CSV Format!")
                 
     else:
         with st.spinner("Checking transaction(s)..."):
@@ -124,4 +124,4 @@ if button_clicked:
             if(result==0):
                 st.success("Congratulations! Not a fraudulent transaction.")
             else:
-                st.failure("Oh no! This transaction is fraudulent.")
+                st.error("Oh no! This transaction is fraudulent.")
