@@ -12,7 +12,7 @@ import pickle
 from xgboost import XGBClassifier
 
 """
-# Hello to your own UPI Transaction Fraud Detector!
+# Welcome to your own UPI Transaction Fraud Detector!
 
 You have the option of inspecting a single transaction by adjusting the parameters below OR you can even check 
 multiple transactions at once by uploading a .csv file in the specified format
